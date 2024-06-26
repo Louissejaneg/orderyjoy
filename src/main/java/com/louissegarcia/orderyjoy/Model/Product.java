@@ -10,9 +10,8 @@ public class Product {
     private @Id
     @GeneratedValue long id;
     private String productname;
-    private String decription;
-    private double price;
     private String description;
+    private double price;
 
     Product(){}
 
@@ -27,8 +26,8 @@ public class Product {
         this.productname = productname;
     }
 
-    public void setDecription(String decription) {
-        this.decription = decription;
+    public void setDescription(String description) {
+        this.description = description;
     }
 
     public void setPrice(double price) {
@@ -44,8 +43,8 @@ public class Product {
         return productname;
     }
 
-    public String getDecription() {
-        return decription;
+    public String getDescription() {
+        return description;
     }
 
     public double getPrice() {
