@@ -16,7 +16,7 @@ import org.springframework.security.web.SecurityFilterChain;
 @EnableWebSecurity
 public class SecurityConfig  {
 
-    private UserDetailsService userDetailsService;
+    private UserDetailsService  userDetailsService;
 
     public SecurityConfig(UserDetailsService userDetailsService){
         this.userDetailsService = userDetailsService;
@@ -39,7 +39,7 @@ SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception{
     http.csrf(csrf -> csrf.disable())
         .authorizeHttpRequests((authorize) ->
             authorize.requestMatchers(HttpMethod.GET, "/api/v1/**").permitAll()
-                .requestMatchers("/api/v1/**").permitAll()
+                .requestMatchers("/api/v1/Auth/**").permitAll()
                 .anyRequest().authenticated()
         );
 

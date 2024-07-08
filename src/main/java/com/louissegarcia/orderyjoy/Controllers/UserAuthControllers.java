@@ -38,11 +38,11 @@ public class UserAuthControllers {
     public ResponseEntity<?> register(@RequestBody RegistrationRequest registrationRequest){
 
         //Check if username exist in DB
-        if (userAuthRepository.existByUsername(registrationRequest.getUsername())){
+        if (userAuthRepository.existsByUsername(registrationRequest.getUsername())){
             return new ResponseEntity<>("Username is already takenn", HttpStatus.BAD_REQUEST);
         }
 
-        if (userAuthRepository.existByEmail(registrationRequest.getEmail())){
+        if (userAuthRepository.existsByEmail(registrationRequest.getEmail())){
             return new ResponseEntity<>("An account is already register in this email", HttpStatus.BAD_REQUEST);
         }
 
@@ -52,7 +52,7 @@ public class UserAuthControllers {
          passwordEncoder.encode(registrationRequest.getPassword())
         );
 
-        Role role = roleRepository.findByName( "Role_Admin").get();
+        Role role = roleRepository.findByName( "ROLE_ADMIN").get();
         userAuth.setRoles(Collections.singleton(role));
 
         userAuthRepository.save(userAuth);
