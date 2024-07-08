@@ -19,7 +19,7 @@ import com.louissegarcia.orderyjoy.Repository.RoleRepository;
 import com.louissegarcia.orderyjoy.Repository.UserAuthRepository;
 
 @RestController
-@RequestMapping
+@RequestMapping("/api/v1/Auth")
 public class UserAuthControllers {
 
     @Autowired
