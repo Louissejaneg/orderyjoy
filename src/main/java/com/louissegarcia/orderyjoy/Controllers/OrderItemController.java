@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.louissegarcia.orderyjoy.Model.OrderItem;
@@ -14,6 +15,7 @@ import com.louissegarcia.orderyjoy.NotFoundException.OrderItemNotFoundException;
 import com.louissegarcia.orderyjoy.Repository.OrderItemRepository;
 
 @RestController
+@RequestMapping("/api/vi/orderItem")
 public class OrderItemController {
 
     OrderItemRepository repo;
@@ -25,20 +27,20 @@ public class OrderItemController {
 
     //http://127.0.0.1/orderItem
     //Get all orderItem
-    @GetMapping("/orderItem")
+    @GetMapping("/all")
     public List<OrderItem> getOrderItem(){
         return repo.findAll();
     }
 
     //http://127.0.0.1:8080/orderItem/52
-    @GetMapping("/orderItem/{id}")
+    @GetMapping("/{id}")
      public OrderItem getOrderItem(@PathVariable Long id){
          return repo.findById(id)
 .orElseThrow(()-> new OrderItemNotFoundException(id));
      }
 
 //http:127.0.0.1:8080/orderItem/new
-    @PostMapping("/orderItem/new")
+    @PostMapping("/new")
     public String addorderItem(@RequestBody OrderItem newOrderItem){
         repo.save(newOrderItem);
         return "A new order item is added Yey!";
@@ -47,7 +49,7 @@ public class OrderItemController {
 
        //Delete Endpoints
     //http://127.0.0.1:8080/orderItem/delete/1
-    @DeleteMapping("/orderItem/delete/{id}")
+    @DeleteMapping("/delete/{id}")
     public String deleteOrderItem(@PathVariable Long id){
         repo.deleteById(id);
         return "A order item is deleted";
